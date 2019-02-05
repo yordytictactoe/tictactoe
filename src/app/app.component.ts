@@ -10,9 +10,9 @@ import { ListPage } from '../pages/list/list';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+  /* @ViewChild(Nav) nav: Nav; */
 
-  rootPage: any = HomePage;
+  /* rootPage: any = HomePage; */
 
   pages: Array<{title: string, component: any}>;
 
@@ -40,6 +40,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    /* this.nav.setRoot(page.component); */
   }
 }

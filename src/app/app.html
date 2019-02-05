@@ -15,5 +15,19 @@
 
 </ion-menu>
 
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<div class="content-maint" #content>
+  <ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Tictactoe</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content >
+    <page-tictactoe>
+
+    </page-tictactoe>
+  </ion-content>
+</div>
