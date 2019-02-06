@@ -1,20 +1,33 @@
 <div class="wrapper">
-    <div class="container">
-  
-  
-    </div>
-  
-    <ul class="bg-bubbles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  
+  <div class="container-button">
+      <button ion-button color="light" outline>X</button>
+      <button ion-button color="light" outline>O</button>
   </div>
+  <div class="container">
+    <div *ngFor="let linea of tictactoeEntity.tablero; let i1=index;" class="fila">
+      <div *ngFor="let casilla of linea; let i2=index;" class="casilla" (click)="usuarioSeleccion(i1, i2)">
+        {{casilla.ficha}}
+      </div>
+    </div>
+
+    <ion-fab right bottom>
+        <button ion-fab (click)="reset()">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+    </ion-fab>
+  </div>
+
+  <ul class="bg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+</div>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
 import { Tictactoe } from './tictactoe.component';
 
 
@@ -9,6 +10,7 @@ import { Tictactoe } from './tictactoe.component';
   ],
   imports: [
     BrowserModule,
+    IonicModule
   ],
   entryComponents: [
     Tictactoe

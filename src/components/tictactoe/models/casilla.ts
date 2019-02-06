@@ -11,3 +11,8 @@ export class Casilla {
         this.jugador = (data && data.jugador) ? data.jugador : null;
     }
 }
+
+export const TIPO_FICHA = {
+    TIPO_X: 'X', 
+    TIPO_O: 'O'
+}

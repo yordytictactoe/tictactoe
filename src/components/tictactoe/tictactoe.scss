@@ -1,4 +1,25 @@
 page-tictactoe {
+
+    .container{
+        z-index: 9;
+    }
+
+    .fila{
+        display: flex;
+    }
+
+    .casilla{
+        padding: 25px;
+        background: #ffffff42;
+        margin: 1px;
+        width: 57px;
+        height: 57px;
+    }
+
+
+
+
+
     .loader-app__text {
         font-size: 30px;
         z-index: 2;
@@ -26,6 +47,7 @@ page-tictactoe {
         width: 100%;
         height: 100%;
         z-index: 1;
+        padding: 0;
       }
       .bg-bubbles li {
         position: absolute;
