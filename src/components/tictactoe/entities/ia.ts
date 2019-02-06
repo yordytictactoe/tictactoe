@@ -8,7 +8,7 @@ export class Ia {
 
     /**
      * se setea el juego para que la ia pueda buscar sus jugadas
-     * @param tictactoeEntity 
+     * @param tictactoeEntity
      */
     setTictactoeEntity(tictactoeEntity: TictactoeEntity) {
         this.tictactoeEntity = tictactoeEntity;
@@ -32,8 +32,8 @@ export class Ia {
                 posicion = posiblesParaGanar[Math.floor(Math.random() * posiblesParaGanar.length)];
             } else if (posiblesParaBloquear.length >= 1) {
                 posicion = posiblesParaBloquear[Math.floor(Math.random() * posiblesParaBloquear.length)];
-            } else if(this.tictactoeEntity.dificulta === 1 || this.tictactoeEntity.dificulta === '1'){
-               /*  if (!this.tictactoeEntity.siCasillaOcupada(1, 1)) posicion = [1, 1]; */
+            } else if(this.tictactoeEntity.dificulta !== 1 || this.tictactoeEntity.dificulta !== '1'){
+                if (!this.tictactoeEntity.siCasillaOcupada(1, 1)) posicion = [1, 1];
             }
 
             //una vez que eligió, pone la ficha en el tablero.

@@ -7,7 +7,7 @@
             <ion-option value="0">Jugar contra un amigo</ion-option>
         </ion-select>
     </ion-item>
-  <div *ngIf="(tictactoeEntity?.getJugadas() || !tictactoeEntity?.isCpuActive()) && !tictactoeEntity.ganador && tictactoeEntity.getJugadas() !== 9" class="info-text">
+  <div *ngIf="(tictactoeEntity?.getJugadas() || !tictactoeEntity?.isCpuActive()) && !tictactoeEntity.ganador && tictactoeEntity.getJugadas() !== 9" class="info-text inidca-turno">
     Turno de: {{tictactoeEntity?.getJugadorTurno()?.ficha}}
   </div>
   <div *ngIf="!tictactoeEntity?.getJugadas() && tictactoeEntity?.isCpuActive()" class="info-text">
@@ -28,10 +28,10 @@
     </div>
   </div>
   <div *ngIf="!tictactoeEntity.ganador && tictactoeEntity.getJugadas() !== 9" class="container">
-    
+
     <div *ngFor="let linea of tictactoeEntity.tablero; let i1=index;" class="fila">
-      <div *ngFor="let casilla of linea; let i2=index;" 
-          class="casilla" 
+      <div *ngFor="let casilla of linea; let i2=index;"
+          class="casilla"
           [ngStyle]="{'width': getCasillaSize(), 'height': getCasillaSize(), 'background': bgCasillaSize, 'color': colorCasillas}"
           (click)="usuarioSeleccion(i1, i2)">
         {{casilla.ficha}}

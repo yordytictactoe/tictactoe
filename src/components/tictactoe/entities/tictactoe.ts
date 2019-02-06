@@ -108,7 +108,7 @@ export class TictactoeEntity {
 
     /**
      * agrega a los jugadores
-     * @param jugador 
+     * @param jugador
      */
     addJugador(jugador: Jugador) {
         this.jugadores.push(jugador);
@@ -133,7 +133,7 @@ export class TictactoeEntity {
     }
 
     /**
-     * 
+     *
      * @param fila fila del tablero
      * @param columna columna del tablero
      * @param cpu indica si es un movimieno de la ia
@@ -154,7 +154,7 @@ export class TictactoeEntity {
         this.ganador = this.isTictac();
 
         // si hay ganador no ejecuta mas logica
-        if (this.ganador) return;
+        if (this.ganador || this.jugadas === 9) return;
 
         this.jugadorDeTurno = this.jugadorDeTurno === 0 ? 1 : 0;
 
