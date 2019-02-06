@@ -1,9 +1,16 @@
 <div class="wrapper">
+  <div *ngIf="tictactoeEntity.getJugadas()" class="info-text">
+    Turno de: {{tictactoeEntity.getJugadorTurno().ficha}}
+  </div>
+  <div *ngIf="!tictactoeEntity.getJugadas()" class="info-text">
+    Comenzar partida o seleccionar jugador
+  </div>
   <div class="container-button">
       <button ion-button color="light" outline>X</button>
       <button ion-button color="light" outline>O</button>
   </div>
   <div class="container">
+    
     <div *ngFor="let linea of tictactoeEntity.tablero; let i1=index;" class="fila">
       <div *ngFor="let casilla of linea; let i2=index;" class="casilla" (click)="usuarioSeleccion(i1, i2)">
         {{casilla.ficha}}
@@ -11,7 +18,7 @@
     </div>
 
     <ion-fab right bottom>
-        <button ion-fab (click)="reset()">
+        <button ion-fab mini (click)="reset()">
             <ion-icon name="refresh"></ion-icon>
         </button>
     </ion-fab>

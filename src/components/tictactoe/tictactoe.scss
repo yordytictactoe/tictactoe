@@ -16,6 +16,18 @@ page-tictactoe {
         height: 57px;
     }
 
+    .info-text{
+        padding: 10px 0px;
+        color: #fff;
+    }
+
+    .container-button{
+        width: 177px;
+        display: flex;
+        button{
+            flex: 1;
+        }
+    }
 
 
 

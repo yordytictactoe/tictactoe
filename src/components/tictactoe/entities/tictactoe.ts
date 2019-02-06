@@ -70,6 +70,10 @@ export class TictactoeEntity {
         this.jugadores = [];
     }
 
+    getJugadas(): number {
+        return this.jugadas;
+    }
+
     /**
      * 
      * @param fila fila del tablero
