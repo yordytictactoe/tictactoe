@@ -1,16 +1,51 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Configuracion</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
+    <div class="container-config">
+      <div class="item-config">
+        <div class="label"> Background 1</div>
+        <div>
+          <input [(colorPicker)]="bgColor1" [style.background]="bgColor1" [cpPosition]="'bottom'" (colorPickerChange)="saveColor('bgColor1', bgColor1)" />
+        </div>
+      </div>
+
+      <div class="item-config">
+        <div class="label"> Background 2</div>
+        <div>
+          <input [(colorPicker)]="bgColor2" [style.background]="bgColor2" (colorPickerChange)="saveColor('bgColor2', bgColor2)"
+            [cpPosition]="'bottom'" />
+        </div>
+      </div>
+
+      <div class="item-config">
+        <div class="label">Tamaño casillas</div>
+        <div>
+          <input [(ngModel)]="tamanoCasilla" type="number" id="tentacles" name="tentacles" class="input-casilas" min="30"
+            max="200" (input)="saveColor('tamanoCasilla', tamanoCasilla)">
+        </div>
+      </div>
+
+      <div class="item-config">
+        <div class="label"> Background casillas</div>
+        <div>
+          <input [(colorPicker)]="bgCasillas" [style.background]="bgCasillas" (colorPickerChange)="saveColor('bgCasillas', bgCasillas)"
+            [cpPosition]="'bottom'" />
+        </div>
+      </div>
+
+      <div class="item-config">
+        <div class="label">|color de texto casillas</div>
+        <div>
+          <input [(colorPicker)]="colorCasillas" [style.background]="colorCasillas" (colorPickerChange)="saveColor('colorCasillas', colorCasillas)"
+            [cpPosition]="'bottom'" />
+        </div>
+      </div>
+    </div>
   </ion-content>
 
 </ion-menu>
@@ -25,8 +60,9 @@
     </ion-navbar>
   </ion-header>
 
-  <ion-content >
-    <page-tictactoe>
+  <ion-content>
+    <page-tictactoe [backgroundColor1]="bgColor1" [backgroundColor2]="bgColor2" [bgCasillaSize]="bgCasillas"
+      [colorCasillas]="colorCasillas" [casillaSize]="tamanoCasilla">
 
     </page-tictactoe>
   </ion-content>

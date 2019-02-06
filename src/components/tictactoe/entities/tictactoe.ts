@@ -1,15 +1,17 @@
 import { Jugador } from '../models/jugador';
 import { Casilla, TIPO_FICHA } from '../models/casilla';
+import { Ia } from './ia';
 
 export class TictactoeEntity {
-    private cpuIsActive = false;
-    private ganador = false;
+    public cpuIsActive = false;
+    public dificulta: any = 1;
+    public ganador = false;
     private jugadorDeTurno = 0;
-    private jugadores: Jugador[] = [];
-
+    public jugadores: Jugador[] = [];
     private jugadas = 0;
-
-    tablero: any[] = [];
+    private tipoFichaJugador = TIPO_FICHA.TIPO_X;
+    public tablero: any[] = [];
+    private ia: Ia = null;
 
     /**
      * inicializa el tablero de juego con el que se jugara
@@ -28,11 +30,57 @@ export class TictactoeEntity {
      * limpia las variables del juego
      */
     clearTictactoe() {
-        this.cpuIsActive = false;
         this.ganador = false;
         this.jugadorDeTurno = 0;
         this.jugadas = 0;
         this.tablero = [];
+    }
+
+
+    /**
+     * inicializa la Ia
+     */
+    configIa() {
+        this.jugadores[1].nombre = 'cpu';
+        if (this.tipoFichaJugador === TIPO_FICHA.TIPO_X) {
+            this.jugadores[1].ficha = TIPO_FICHA.TIPO_O;
+            this.jugadores[0].ficha = TIPO_FICHA.TIPO_X;
+        } else {
+            this.jugadores[0].ficha = TIPO_FICHA.TIPO_O;
+            this.jugadores[1].ficha = TIPO_FICHA.TIPO_X;
+            this.jugadorDeTurno = this.jugadorDeTurno === 0 ? 1 : 0;
+
+            if (this.getJugadorTurno().nombre === 'cpu') {
+                setTimeout(() => {
+                    this.ia.jugadaComputadora();
+                }, 1000);
+            }
+
+        }
+        this.ia = new Ia();
+        this.ia.setTictactoeEntity(this);
+    }
+
+    /**
+     * retorna la ficha que esta usando la Ia
+     */
+    getFichaIa(): string {
+        if (this.tipoFichaJugador === TIPO_FICHA.TIPO_X) {
+            return TIPO_FICHA.TIPO_O;
+        } else {
+            return TIPO_FICHA.TIPO_X;
+        }
+    }
+
+    /**
+     * retorna la ficha que eligio el jugador
+     */
+    getFichaHumano(): string {
+        return this.tipoFichaJugador;
+    }
+
+    setFichaHumano(ficha: string) {
+        this.tipoFichaJugador = ficha;
     }
 
     /**
@@ -53,6 +101,9 @@ export class TictactoeEntity {
         }));
 
         this.initTablero();
+        if (this.cpuIsActive) {
+            this.configIa();
+        }
     }
 
     /**
@@ -70,8 +121,15 @@ export class TictactoeEntity {
         this.jugadores = [];
     }
 
+    /**
+     * retorna las jugadas
+     */
     getJugadas(): number {
         return this.jugadas;
+    }
+
+    isCpuActive(): boolean {
+        return this.cpuIsActive;
     }
 
     /**
@@ -100,7 +158,13 @@ export class TictactoeEntity {
 
         this.jugadorDeTurno = this.jugadorDeTurno === 0 ? 1 : 0;
 
-        // TODO implementar jugadas de la IA
+        if (this.cpuIsActive) {
+            if (this.getJugadorTurno().nombre === 'cpu') {
+                setTimeout(() => {
+                this.ia.jugadaComputadora();
+                }, 1000);
+            }
+        }
     }
 
     /**
@@ -211,5 +275,46 @@ export class TictactoeEntity {
             colun.push(res);
         }
         return colun;
+    }
+
+    /**
+     * verifica si la linea tiene dos ocupadas
+     * @param ficha ficha a buscar
+     */
+    celdasVaciasDeLineasConDosOcupadas(ficha): any[] {
+        // se unen en un solo array todas las lineas posible que se pueden hacer
+        var lineas = this.columnas().concat(this.tablero).concat(this.diagonales());
+        var res = [];
+        for (var linea of lineas) {
+            var tiene = this.tieneUnaSolaDesocupada(linea, ficha);
+            if (tiene.length !== 0) {
+                res.push(tiene);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * verifica si la linea tiene una sola desocupada
+     * @param linea linea en donde se buscara
+     * @param tipoFicha ficha a buscar
+     */
+    tieneUnaSolaDesocupada(linea, tipoFicha): any[] {
+        var count = 0;
+        var posicion = [];
+        for (var celda of linea) {
+            if (celda.jugador !== null) {
+                if (celda.ficha === tipoFicha) {
+                    count++;
+                }
+            } else {
+                posicion = celda.id;
+            }
+        }
+        if (count === 2) {
+            return posicion;
+        } else {
+            return [];
+        }
     }
 }
