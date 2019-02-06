@@ -54,6 +54,11 @@ export class MyApp {
     });
   }
 
+  /**
+   * guarda el valor en localStorage
+   * @param property nombre de la propiedad
+   * @param value valor a guardar
+   */
   saveColor(property, value){
     localStorage.setItem(property, value);
   }

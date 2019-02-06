@@ -21,6 +21,7 @@ export class Tictactoe implements OnInit {
   }
 
   ngOnInit() {
+    // por defecto se selecciona la ficha X
     this.selecionarFichaJugador('X');
   }
 
@@ -38,10 +39,17 @@ export class Tictactoe implements OnInit {
     return this.casillaSize + 'px';
   }
 
+  /**
+   * retorna tamaño de texto de las casillas
+   */
   getFontSize(): string {
     return this.fontSizeCasillas + 'px';
   }
 
+  /**
+   *
+   * @param ficha selecciona la ficha del jugador
+   */
   selecionarFichaJugador(ficha) {
     // inicializamos el juego
     if (this.activeIa) {
@@ -51,6 +59,10 @@ export class Tictactoe implements OnInit {
     this.tictactoeEntity.initTictactoe();
   }
 
+  /**
+   * selecciona la dificulta
+   * @param event dificulta 1 facil, 2 medio, 0 con otro jugador
+   */
   selectDificulta(event) {
     if (event === '0') {
       this.activeIa = false;
@@ -73,6 +85,9 @@ export class Tictactoe implements OnInit {
     this.tictactoeEntity.marcarJugada(fila, columna);
   }
 
+  /**
+   * resetea el tablero
+   */
   reset() {
     this.tictactoeEntity.setFichaHumano('X');
     this.tictactoeEntity.initTictactoe();

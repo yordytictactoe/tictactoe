@@ -1,52 +1,51 @@
 <div class="wrapper" [ngStyle]="{'background': getBackground()}">
-    <ion-item class="item-leave-height">
-        <ion-label>Dificulta</ion-label>
-        <ion-select [(ngModel)]="dificulta" (ionChange)="selectDificulta($event)" (ionCancel)="selectDificulta($event)">
-            <ion-option value="1">Facil</ion-option>
-            <ion-option value="2">Medio</ion-option>
-            <ion-option value="0">Jugar contra un amigo</ion-option>
-        </ion-select>
-    </ion-item>
-  <div *ngIf="(tictactoeEntity?.getJugadas() || !tictactoeEntity?.isCpuActive()) && !tictactoeEntity.ganador && tictactoeEntity.getJugadas() !== 9" class="info-text inidca-turno">
+  <ion-item class="item-leave-height">
+    <ion-label>Dificulta</ion-label>
+    <ion-select [(ngModel)]="dificulta" (ionChange)="selectDificulta($event)" (ionCancel)="selectDificulta($event)">
+      <ion-option value="1">Facil</ion-option>
+      <ion-option value="2">Medio</ion-option>
+      <ion-option value="0">Jugar contra un amigo</ion-option>
+    </ion-select>
+  </ion-item>
+  <div *ngIf="(tictactoeEntity?.getJugadas() || !tictactoeEntity?.isCpuActive()) && !tictactoeEntity.ganador && tictactoeEntity.getJugadas() !== 9"
+    class="info-text inidca-turno">
     Turno de: {{tictactoeEntity?.getJugadorTurno()?.ficha}}
   </div>
   <div *ngIf="!tictactoeEntity?.getJugadas() && tictactoeEntity?.isCpuActive()" class="info-text">
     Comenzar partida o seleccionar jugador
   </div>
   <div *ngIf="!tictactoeEntity.ganador && tictactoeEntity.getJugadas() !== 9" class="container-button">
-      <button (click)="selecionarFichaJugador('X')" ion-button color="light" [outline]="tictactoeEntity?.getJugadorTurno()?.ficha !== 'X'">X</button>
-      <button (click)="selecionarFichaJugador('O')" ion-button color="light" [outline]="tictactoeEntity?.getJugadorTurno()?.ficha !== 'O'">O</button>
+    <button (click)="selecionarFichaJugador('X')" ion-button color="light" [outline]="tictactoeEntity?.getJugadorTurno()?.ficha !== 'X'">X</button>
+    <button (click)="selecionarFichaJugador('O')" ion-button color="light" [outline]="tictactoeEntity?.getJugadorTurno()?.ficha !== 'O'">O</button>
   </div>
   <div *ngIf="tictactoeEntity.ganador || tictactoeEntity.getJugadas() === 9">
     <div *ngIf="tictactoeEntity.ganador" class="text-ganador">Ganador: </div>
     <div *ngIf="!tictactoeEntity.ganador && tictactoeEntity.getJugadas() === 9" class="text-ganador">Empate: </div>
     <div *ngIf="tictactoeEntity.ganador" class="text-ganador-ficha">
-        {{tictactoeEntity?.getJugadorTurno()?.ficha}}
+      {{tictactoeEntity?.getJugadorTurno()?.ficha}}
     </div>
     <div *ngIf="!tictactoeEntity.ganador && tictactoeEntity.getJugadas() === 9" class="text-ganador-ficha">
-        X/O
+      X/O
     </div>
   </div>
   <div *ngIf="!tictactoeEntity.ganador && tictactoeEntity.getJugadas() !== 9" class="container">
 
     <div *ngFor="let linea of tictactoeEntity.tablero; let i1=index;" class="fila">
-      <div *ngFor="let casilla of linea; let i2=index;"
-          class="casilla"
-          [ngStyle]="{'width': getCasillaSize(),
+      <div *ngFor="let casilla of linea; let i2=index;" class="casilla" [ngStyle]="{'width': getCasillaSize(),
           'height': getCasillaSize(),
           'background': bgCasillaSize,
           'color': colorCasillas,
           'font-size': getFontSize()}"
-          (click)="usuarioSeleccion(i1, i2)">
+        (click)="usuarioSeleccion(i1, i2)">
         {{casilla.ficha}}
       </div>
     </div>
   </div>
 
   <ion-fab right bottom>
-      <button ion-fab mini (click)="reset()">
-          <ion-icon name="refresh"></ion-icon>
-      </button>
+    <button ion-fab mini (click)="reset()">
+      <ion-icon name="refresh"></ion-icon>
+    </button>
   </ion-fab>
 
   <ul class="bg-bubbles">
