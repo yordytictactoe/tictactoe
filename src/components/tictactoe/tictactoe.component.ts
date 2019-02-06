@@ -11,12 +11,13 @@ export class Tictactoe implements OnInit {
   @Input() casillaSize = 57;
   @Input() bgCasillaSize = '#ffffff42';
   @Input() colorCasillas = '#000';
+  @Input() fontSizeCasillas = 14;
   public tictactoeEntity: TictactoeEntity = new TictactoeEntity();
   public activeIa = true;
   public dificulta = 1;
 
   constructor() {
-    
+
   }
 
   ngOnInit() {
@@ -36,7 +37,11 @@ export class Tictactoe implements OnInit {
   getCasillaSize(): string {
     return this.casillaSize + 'px';
   }
-  
+
+  getFontSize(): string {
+    return this.fontSizeCasillas + 'px';
+  }
+
   selecionarFichaJugador(ficha) {
     // inicializamos el juego
     if (this.activeIa) {

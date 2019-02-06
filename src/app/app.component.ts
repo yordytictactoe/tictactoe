@@ -12,6 +12,7 @@ export class MyApp {
   public bgCasillas = '#ffffff42';
   public colorCasillas = '#000';
   public tamanoCasilla = 57;
+  public fontSizeCasillas = 14;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -37,6 +38,9 @@ export class MyApp {
     }
     if (localStorage.getItem('colorCasillas')) {
       this.colorCasillas = localStorage.getItem('colorCasillas');
+    }
+    if (localStorage.getItem('fontSizeCasillas')) {
+      this.fontSizeCasillas = Number(localStorage.getItem('fontSizeCasillas'));
     }
   }
 

@@ -39,10 +39,18 @@
       </div>
 
       <div class="item-config">
-        <div class="label">|color de texto casillas</div>
+        <div class="label">color de texto casillas</div>
         <div>
           <input [(colorPicker)]="colorCasillas" [style.background]="colorCasillas" (colorPickerChange)="saveColor('colorCasillas', colorCasillas)"
             [cpPosition]="'bottom'" />
+        </div>
+      </div>
+
+      <div class="item-config">
+        <div class="label">Tamaño de texto casillas</div>
+        <div>
+          <input [(ngModel)]="fontSizeCasillas" type="number" id="tentacles" name="tentacles" class="input-casilas" min="30"
+            max="200" (input)="saveColor('fontSizeCasillas', fontSizeCasillas)">
         </div>
       </div>
     </div>
@@ -62,7 +70,7 @@
 
   <ion-content>
     <page-tictactoe [backgroundColor1]="bgColor1" [backgroundColor2]="bgColor2" [bgCasillaSize]="bgCasillas"
-      [colorCasillas]="colorCasillas" [casillaSize]="tamanoCasilla">
+      [colorCasillas]="colorCasillas" [casillaSize]="tamanoCasilla" [fontSizeCasillas]="fontSizeCasillas">
 
     </page-tictactoe>
   </ion-content>

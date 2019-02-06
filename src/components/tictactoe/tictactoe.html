@@ -32,7 +32,11 @@
     <div *ngFor="let linea of tictactoeEntity.tablero; let i1=index;" class="fila">
       <div *ngFor="let casilla of linea; let i2=index;"
           class="casilla"
-          [ngStyle]="{'width': getCasillaSize(), 'height': getCasillaSize(), 'background': bgCasillaSize, 'color': colorCasillas}"
+          [ngStyle]="{'width': getCasillaSize(),
+          'height': getCasillaSize(),
+          'background': bgCasillaSize,
+          'color': colorCasillas,
+          'font-size': getFontSize()}"
           (click)="usuarioSeleccion(i1, i2)">
         {{casilla.ficha}}
       </div>
